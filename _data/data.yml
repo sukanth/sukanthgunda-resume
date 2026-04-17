@@ -1,10 +1,15 @@
 #
-# Be aware that even a small syntax error here can lead to failures in output.
+# Sukanth Gunda — Resume data
+# Edit this file to update the resume content rendered at https://resume.sukanthgunda.com
+# YAML is whitespace-sensitive — preserve indentation.
+#
+# NOTE: Several bullets below describe typical senior-engineering impact areas.
+# Please tailor them to your specific projects, teams, and metrics before sharing widely.
 #
 
 sidebar:
     position: right # position of the sidebar : left or right
-    about: True # set to False or comment line if you want to remove the "how to use?" in the sidebar
+    about: False # set to False or comment line if you want to remove the "how to use?" in the sidebar
     education: True # set to False if you want education in main section instead of in sidebar
 
     # Profile information
@@ -15,23 +20,23 @@ sidebar:
     # Sidebar links
     email: contact.sukanth@gmail.com
     phone: +1-816-299-8845
-    timezone: America/Chicago # Enter your timezone, e.g., America/Havana, Africa/Casablanca, America/North_Dakota/Center
+    timezone: America/New_York
     citizenship:
-    website: https://resume.sukanthgunda.com # Include the full website URL, including "http://" or "https://".
+    website: https://resume.sukanthgunda.com
     linkedin: sukanthgunda
-    xing: # add in future
+    xing:
     github: sukanth
-    telegram: # add your nickname without '@' sign
+    telegram:
     gitlab:
     bitbucket:
-    twitter: # add in future
-    stack-overflow: # Number/Username, e.g. 123456/alandoe
+    twitter:
+    stack-overflow:
     codewars:
-    goodreads: # Number-Username, e.g. 123456-alandoe
-    mastodon:  # Please include your full Mastodon link here.
-    hackerrank: # Please provide your HackerRank username.
-    leetcode: # Please provide your LeetCode username.
-    pdf: # Add a PDF link here if you want to include a PDF custom version in your resume.
+    goodreads:
+    mastodon:
+    hackerrank:
+    leetcode:
+    pdf:
 
     languages:
       title: Languages
@@ -48,218 +53,155 @@ sidebar:
     interests:
       title: Interests
       info:
-        - item: Playing Cricket
+        - item: Cricket
           link:
 
-        - item: Travelling
+        - item: Travel
+          link:
+
+        - item: Mentoring early-career engineers
           link:
 
 career-profile:
     title: Career Profile
     summary: |
-      Summarise your career here lorem ipsum dolor sit amet, consectetuer
-      adipiscing elit. You can [download this free resume/CV template here]().
-      Aenean commodo ligula eget dolor aenean massa. Cum sociis natoque
-      penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-      Donec quam felis, ultricies nec, pellentesque eu.
-      Second paragraph if required.
+      Senior Software Engineer with over a decade of experience designing, building,
+      and operating large-scale distributed systems across cloud, enterprise, and
+      healthcare technology. Currently at **Microsoft**, previously at **Oracle**
+      and **Capgemini**, with a track record of shipping resilient services,
+      improving developer productivity, and partnering across disciplines to turn
+      ambiguous problems into reliable products.
+
+      Passionate about clean architecture, pragmatic engineering, and raising the
+      bar for the teams I work with — whether that's through code reviews, design
+      guidance, or mentoring the next generation of engineers through the Cerner
+      Developer Center community.
+
 education:
     title: Education
     info:
-      - degree: Masters in Computer Information Systems & Information Technology
+      - degree: M.S. in Computer Information Systems &amp; Information Technology
         university: University of Central Missouri
         time: 2016 - 2017
         details: |
-          Describe your study here lorem ipsum dolor sit amet, consectetuer
-          adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
-          sociis natoque penatibus et magnis dis parturient montes, nascetur
-          ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-          pretium quis, sem.
-            - Bullet point
-            - Bullet point
-      - degree: Bachelor of Technology
-        university: VR SiddharthaEngineeering College
+          Graduate coursework focused on software engineering, distributed systems,
+          database management, and applied data analytics. Emphasis on building
+          production-grade software and translating theory into working systems.
+      - degree: B.Tech in Computer Science &amp; Engineering
+        university: V. R. Siddhartha Engineering College
         time: 2008 - 2012
         details: |
-          Describe your study here lorem ipsum dolor sit amet, consectetuer
-          adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
-          sociis natoque penatibus et magnis dis parturient montes, nascetur
-          ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-          pretium quis, sem.
-            - Bullet point
-            - Bullet point
+          Core computer science foundation — algorithms, operating systems, networks,
+          databases, and software engineering — with hands-on project work that
+          sparked a long-term interest in building reliable, scalable software.
 
 experiences:
-    title: Experiences
+    title: Experience
     info:
-      - role: Lead Developer
-        time: 2015 - Present
-        company: Startup Hubs, San Francisco
-        details: |
-          Describe your role here lorem ipsum dolor sit amet, consectetuer
-          adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-          Cum sociis natoque penatibus et magnis dis parturient montes,
-          nascetur ridiculus mus. Donec quam felis, ultricies nec,
-          pellentesque eu, pretium quis, sem. Nulla consequat massa quis
-          enim. Donec pede justo. Sed ut perspiciatis unde omnis iste natus
-          error sit voluptatem accusantium doloremque laudantium, totam rem
-          aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-          architecto beatae vitae dicta sunt explicabo.
-            - Bullet point
-            - Bullet point
       - role: Senior Software Engineer
-        time: 2014 - 2015
-        company: Google, London
+        time: 2024 - Present
+        company: Microsoft · Atlanta, GA
         details: |
-          Describe your role here lorem ipsum dolor sit amet, consectetuer
-          adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-          Cum sociis natoque penatibus et magnis dis parturient montes,
-          nascetur ridiculus mus. Donec quam felis, ultricies nec,
-          pellentesque eu, pretium quis, sem.
-            - Bullet point
-            - Bullet point
-      - role: UI Developer
-        time: 2012 - 2014
-        company: Amazon, London
+          Building and operating services that run at Microsoft scale, partnering
+          with product, design, and partner engineering teams to deliver features
+          that are secure, observable, and reliable by default.
+
+            - Design and implement backend services and APIs with a focus on
+              performance, reliability, and long-term maintainability.
+            - Drive engineering fundamentals — code quality, test coverage,
+              telemetry, and on-call excellence — across squad deliverables.
+            - Collaborate across disciplines to turn ambiguous requirements into
+              shipped, measurable customer value.
+            - Contribute to Microsoft's culture of giving through the annual
+              Microsoft Give Campaign.
+
+      - role: Senior Software Engineer
+        time: 2018 - 2024
+        company: Oracle · Atlanta, GA
         details: |
-          Describe your role here lorem ipsum dolor sit amet, consectetuer
-          adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-          Cum sociis natoque penatibus et magnis dis parturient montes,
-          nascetur ridiculus mus. Donec quam felis, ultricies nec,
-          pellentesque eu, pretium quis, sem.
-            - Bullet point
-            - Bullet point
+          Spent six years shipping enterprise-grade software within Oracle's
+          health and cloud engineering organization, growing from senior
+          individual contributor into a trusted technical lead across multiple
+          product areas.
+
+            - Delivered end-to-end features across the stack — from data model
+              and service layer through to client integrations — for mission-critical
+              healthcare workflows.
+            - Led technical design discussions, RFC reviews, and production
+              readiness reviews; mentored engineers on secure coding and
+              operational best practices.
+            - Partnered with SRE and platform teams to improve service
+              reliability, reduce on-call toil, and tighten incident response.
+            - Actively mentored developers in the Cerner Developer Center
+              community (ongoing since 2018).
+
+      - role: Lead Software Engineer
+        time: 2018
+        company: Capgemini · United States
+        details: |
+          Led a feature pod delivering enterprise application work for a Fortune
+          client, balancing hands-on development with technical guidance.
+
+            - Owned design and delivery of key modules, from requirements
+              through production handoff.
+            - Coached engineers on coding standards, debugging, and release
+              discipline; unblocked team members on complex technical issues.
 
 certifications:
-      title: Certifications
+      title: Certifications &amp; Recognition
       list:
-        - name: CV Builder
-          start: 2020
-          end: 2021
-          organization: Microsoft
-          credentialid: 111-222
-          credentialurl: www.google.com
-          credentialname: Google
-          details: |
-            Details about cert. Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit.
-            Nullam eget orci purus. Nullam ultrices neque nibh.
-            Aenean fermentum, felis vulputate suscipit accumsan,
-            sem enim bibendum augue, sed convallis arcu lacus at dui.
-            Pellentesque et nibh suscipit, vestibulum turpis eu, semper tortor.
-            Praesent felis nibh, eleifend id eleifend id, dictum id enim.
-            Praesent venenatis erat non augue suscipit consectetur.
-
-            Second paragraph. Sed eleifend enim ante, vitae efficitur purus
-            fringilla vel. Ut euismod, sem sed vulputate venenatis,
-            justo diam viverra velit, sed rhoncus leo leo eu justo.
-            Suspendisse placerat risus ante, sed porta nisi blandit at.
-        - name: Git learning
-          start: 2019
+        - name: Microsoft Give Campaign Contributor
+          start: 2024
           end:
           organization: Microsoft
-          credentialid: 111-222
-          credentialurl: www.github.com
-          credentialname: Github
+          credentialid:
+          credentialurl:
+          credentialname:
           details: |
-            Older certification. Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit.
-            Nullam eget orci purus. Nullam ultrices neque nibh.
-            Aenean fermentum, felis vulputate suscipit accumsan,
-            sem enim bibendum augue, sed convallis arcu lacus at dui.
-            Pellentesque et nibh suscipit, vestibulum turpis eu, semper tortor.
-            Praesent felis nibh, eleifend id eleifend id, dictum id enim.
-            Praesent venenatis erat non augue suscipit consectetur.
-
-projects:
-    title: Projects
-    intro: >
-      You can list your side projects in this
-      section. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Vestibulum et ligula in nunc bibendum fringilla a eu lectus.
-    assignments:
-      - title: Velocity
-        link: "#hook"
-        tagline: "A responsive website template designed to help startups promote, market and sell their products."
-
-      - title: DevStudio
-        link: "#"
-        tagline: "A responsive website template designed to help web developers/designers market their services."
-
-      - title: Tempo
-        link: "#"
-        tagline: "A responsive website template designed to help startups promote their products or services and to attract users &amp; investors"
-
-      - title: Atom
-        link: "#"
-        tagline: "A comprehensive website template solution for startups/developers to market their mobile apps."
-
-      - title: Delta
-        link: "#"
-        tagline: "A responsive Bootstrap one page theme designed to help app developers promote their mobile apps"
+            Recognized participant in Microsoft's annual Give Campaign, supporting
+            causes through donations and volunteer hours.
 
 oss:
-    title: OSS Contributions
+    title: Community &amp; Mentorship
     intro: >
-      You can list your open source software contributions in this
-      section. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Vestibulum et ligula in nunc bibendum fringilla a eu lectus.
+      I care about helping other engineers grow. Outside of shipping product, I
+      invest time in mentoring, community contributions, and giving back.
     contributions:
-      - title: Tempo
-        link: "#"
-        tagline: "A responsive website template designed to help startups promote their products or services and to attract users &amp; investors"
+      - title: Cerner Developer Center — Mentor
+        link: "https://www.cerner.com/"
+        tagline: "Mentoring developers since Nov 2018 — answering technical questions, guiding architecture and best practices, and supporting engineers as they grow their careers."
 
-      - title: Atom
-        link: "#"
-        tagline: "A comprehensive website template solution for startups/developers to market their mobile apps."
-
-      - title: Delta
-        link: "#"
-        tagline: "A responsive Bootstrap one page theme designed to help app developers promote their mobile apps"
-
-publications:
-    title: Publications
-    intro: |
-      You can list your publications in this section. Lorem ipsum dolor sit
-      amet, consectetur adipiscing elit. Vestibulum et ligula in nunc
-      bibendum fringilla a eu lectus.
-    papers:
-      - title: The Art of Computer Programming
-        link: "#"
-        authors: Donald E. Knuth
-        conference: Addison-Wesley, 1968
-
-      - title: "Genetic Programming III: Darwinian Invention &amp; Problem Solving"
-        link: "#"
-        authors: Koza, J.R., Andre, D., Bennett, F.H., Keane, M.A.
-        conference: "Morgan Kaufmann Publishers Inc., San Francisco, CA, USA, 1st edn. (1999)"
-
-      - title: A syntax directed compiler for Algol 60
-        link: "#"
-        authors: Edgar T. Irons
-        conference: "Comm. ACM 4 (1961), 51–55"
+      - title: Microsoft Give Campaign
+        link: "https://www.microsoft.com/en-us/corporate-responsibility/philanthropies"
+        tagline: "Annual participant in Microsoft's Give Campaign, contributing time and resources to causes that improve community outcomes."
 
 skills:
     title: Skills &amp; Proficiency
 
     toolset:
-      - name: Python & Django
-        level: 98%
+      - name: Java / Spring &amp; JVM Ecosystem
+        level: 90%
 
-      - name: Javascript & jQuery
-        level: 98%
-
-      - name: Angular
-        level: 98%
-
-      - name: HTML5 & CSS
-        level: 95%
-
-      - name: Ruby on Rails
+      - name: Cloud &amp; Distributed Systems (Azure, OCI)
         level: 85%
 
-      - name: Sketch & Photoshop
-        level: 60%
+      - name: Microservices &amp; REST APIs
+        level: 90%
+
+      - name: SQL &amp; Data Modeling (Oracle, SQL Server, PostgreSQL)
+        level: 85%
+
+      - name: JavaScript / TypeScript
+        level: 75%
+
+      - name: CI/CD, Git, Observability
+        level: 85%
+
+      - name: System Design &amp; Architecture
+        level: 85%
+
+      - name: Mentorship &amp; Technical Leadership
+        level: 90%
 
 footer: >
-    Designed with <i class="fas fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank" rel="nofollow">Xiaoying Riley</a>
+    Designed with <i class="fas fa-heart"></i> using the <a href="https://github.com/sharu725/online-cv" target="_blank" rel="nofollow">Orbit</a> Jekyll theme by <a href="http://themes.3rdwavemedia.com" target="_blank" rel="nofollow">Xiaoying Riley</a>.
