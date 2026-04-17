@@ -14,7 +14,7 @@ sidebar:
 
     # Profile information
     name: Sukanth Gunda
-    tagline: Senior Software Engineer
+    tagline: Senior Software Engineer · Agentic AI &amp; Developer Platforms
     avatar: sukanthgunda.png  #place a 100x100 picture inside /assets/images/ folder and provide the name of the file below
 
     # Sidebar links
@@ -67,15 +67,20 @@ career-profile:
     summary: |
       Senior Software Engineer with over a decade of experience designing, building,
       and operating large-scale distributed systems across cloud, enterprise, and
-      healthcare technology. Currently at **Microsoft**, previously at **Oracle**
-      and **Capgemini**, with a track record of shipping resilient services,
-      improving developer productivity, and partnering across disciplines to turn
-      ambiguous problems into reliable products.
+      healthcare technology. Currently at **Microsoft**, building **agentic AI
+      developer tooling** — Copilot skills, orchestrator agents, and MCP (Model
+      Context Protocol) servers — that help engineers across the company remediate
+      security &amp; compliance violations and ship with confidence under the
+      **Secure Future Initiative (SFI)**.
 
-      Passionate about clean architecture, pragmatic engineering, and raising the
-      bar for the teams I work with — whether that's through code reviews, design
-      guidance, or mentoring the next generation of engineers through the Cerner
-      Developer Center community.
+      Previously at **Oracle** and **Capgemini**, with a track record of shipping
+      resilient services, improving developer productivity, and turning ambiguous
+      problems into reliable products. Passionate about where **LLMs meet developer
+      workflows** — prompt design, retrieval-augmented generation, and safe,
+      auditable automation of real engineering work. I care deeply about clean
+      architecture, pragmatic engineering, and raising the bar for the teams I work
+      with through code reviews, design guidance, and mentoring early-career
+      engineers in the Cerner Developer Center community.
 
 education:
     title: Education
@@ -102,17 +107,31 @@ experiences:
         time: 2024 - Present
         company: Microsoft · Atlanta, GA
         details: |
-          Building and operating services that run at Microsoft scale, partnering
-          with product, design, and partner engineering teams to deliver features
-          that are secure, observable, and reliable by default.
+          Building **agentic AI developer tooling** in the Secure Future Initiative
+          (SFI) space — Copilot skills, orchestrator agents, and Model Context
+          Protocol (MCP) servers that help thousands of engineers across Microsoft
+          turn compliance work into guided, high-signal AI workflows.
 
-            - Design and implement backend services and APIs with a focus on
-              performance, reliability, and long-term maintainability.
+            - Designed and shipped LLM-powered skills and orchestrator agents that
+              diagnose and remediate security &amp; compliance violations (SFI/QEI)
+              across authentication, networking, storage, and identity controls —
+              shifting remediation from manual toil to guided AI pair-programming.
+            - Built MCP servers and Copilot extensions that ground agents in
+              real engineering context — source repos, deployment systems,
+              compliance KPIs, and troubleshooting guides — for accurate,
+              auditable automation.
+            - Applied **prompt engineering, retrieval-augmented generation (RAG),
+              and structured tool use** patterns to deliver reliable, repeatable
+              outcomes; added execution-signal capture to close the feedback loop
+              and continuously improve skill quality.
+            - Partnered with security, platform, and DevEx orgs to reduce
+              time-to-approve on deployment requests and accelerate adoption of
+              SFI standards through evidence-backed review briefs and
+              auto-approval pathways.
             - Drive engineering fundamentals — code quality, test coverage,
-              telemetry, and on-call excellence — across squad deliverables.
-            - Collaborate across disciplines to turn ambiguous requirements into
-              shipped, measurable customer value.
-            - Contribute to Microsoft's culture of giving through the annual
+              telemetry, and on-call excellence — while mentoring peers on
+              building effective agentic systems.
+            - Contributor to Microsoft's culture of giving through the annual
               Microsoft Give Campaign.
 
       - role: Senior Software Engineer
@@ -179,17 +198,26 @@ skills:
     title: Skills &amp; Proficiency
 
     toolset:
+      - name: Agentic AI &amp; LLM-Powered Tooling
+        level: 90%
+
+      - name: Prompt Engineering, RAG &amp; Grounding
+        level: 85%
+
+      - name: GitHub Copilot Skills &amp; MCP Servers
+        level: 85%
+
       - name: Java / Spring &amp; JVM Ecosystem
         level: 90%
 
-      - name: Cloud &amp; Distributed Systems (Azure, OCI)
+      - name: Cloud &amp; Distributed Systems (Azure, OCI, Azure OpenAI)
         level: 85%
 
       - name: Microservices &amp; REST APIs
         level: 90%
 
       - name: SQL &amp; Data Modeling (Oracle, SQL Server, PostgreSQL)
-        level: 85%
+        level: 80%
 
       - name: JavaScript / TypeScript
         level: 75%
