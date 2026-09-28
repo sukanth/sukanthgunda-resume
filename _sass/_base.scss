@@ -530,6 +530,19 @@ b {
     font-weight: 600;
   }
 
+  .role-progression {
+    margin: -6px 0 12px;
+    max-width: 64ch;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: $text-grey;
+  }
+
+  .role-step-title {
+    font-weight: 600;
+    color: $text-color-secondary;
+  }
+
   .details {
     font-size: 14.5px;
     max-width: 64ch;

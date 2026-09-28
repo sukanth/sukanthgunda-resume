@@ -17,6 +17,18 @@
 
       <div class="company">{{ experience.company }}</div>
 
+      {%- comment -%}
+        Optional breakdown of the titles held inside one employer. Rendered as
+        one compact run so it costs a line or two rather than a block per role.
+      {%- endcomment -%}
+      {% if experience.roles %}
+      <p class="role-progression">
+        {%- for r in experience.roles -%}
+        <span class="role-step"><span class="role-step-title">{{ r.title }}</span><span class="role-step-time">, {{ r.time }}</span></span>{% unless forloop.last %}<span class="role-step-sep"> · </span>{% endunless %}
+        {%- endfor -%}
+      </p>
+      {% endif %}
+
     </div><!--//meta-->
 
     {% if experience.details %}

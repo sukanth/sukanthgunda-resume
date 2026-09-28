@@ -133,6 +133,11 @@ experiences:
       - role: Senior Software Engineer
         time: Jul 2024 – Present
         company: Microsoft, Atlanta, GA
+        roles:
+          - title: Senior Software Engineer (Lead), Level 64
+            time: Aug 2026 – Present
+          - title: Senior Software Engineer, Level 63
+            time: Jul 2024 – Aug 2026
         details: |
             - **Own the problem space** for developer-first reliability and compliance
               platforms — setting technical direction, resolving ambiguity, and taking
@@ -204,23 +209,36 @@ experiences:
               architecture, and engineering fundamentals.
 
       - role: Lead Software Engineer
-        time: Aug 2017 – Nov 2018
-        company: Capgemini, Atlanta, GA
+        time: Feb 2013 – Nov 2018
+        company: Capgemini, Atlanta, GA and Chennai, India
+        # Titles and dates below are exactly as they appear on the LinkedIn
+        # profile export, so the resume and that profile agree.
+        #
+        # If Capgemini's internal grade names are what you would rather show
+        # (Consultant / Senior Consultant / Programmer Developer Lead), replace
+        # the `title:` values here — keep the dates, or correct them to match
+        # the grade changes. Do not mix the two naming schemes.
+        roles:
+          - title: Lead Software Engineer
+            time: Aug 2018 – Nov 2018
+          - title: Consultant
+            time: Aug 2017 – Aug 2018
+          - title: Senior Software Engineer
+            time: Feb 2014 – Jul 2016
+          - title: Software Engineer
+            time: Feb 2013 – Feb 2014
         details: |
-            - Promoted from Consultant to Lead Software Engineer; led a delivery team
-              and owned modules from requirements through production handoff.
-            - Earlier at Capgemini in Chennai, India (Feb 2013 – Jul 2016): built
-              **Java / J2EE** web applications and batch jobs through full SDLC.
-
+            - Led a delivery team and owned enterprise application modules from
+              requirements and technical design through production handoff.
+            - Built **Java / J2EE** web applications and batch jobs across the full
+              cycle — analysis, design, build, deployment, and testing.
         extended: |
             - Coached engineers on coding standards, debugging, and release
               discipline; unblocked the team on complex technical issues.
-            - Delivered enterprise application modules end to end — requirements,
-              technical design, build, deployment, and production handoff — working
-              directly with client architects and product owners.
-            - In Chennai, covered the full cycle on **Java / J2EE** web applications
-              and batch jobs: analysis, design, coding, deployment, and testing,
-              including performance tuning and production defect triage.
+            - Worked directly with client architects and product owners on
+              requirements and technical design for enterprise delivery.
+            - Handled performance tuning and production defect triage on live Java
+              batch workloads.
 
 education:
     title: Education
