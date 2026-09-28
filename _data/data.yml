@@ -119,7 +119,7 @@ skills:
     # Connect, secrets management, Azure OpenAI, event-driven architecture.
     groups:
       - category: AI &amp; Agentic Systems
-        items: Agentic AI, Multi-agent orchestration, Microsoft Agent Framework, Azure OpenAI, LLM application development, Model Context Protocol (MCP), RAG, Embeddings &amp; vector search, Evals, Responsible AI
+        items: Agentic AI, Multi-agent orchestration, Microsoft Agent Framework, Azure OpenAI, Large Language Models (LLMs), Model Context Protocol (MCP), Retrieval-Augmented Generation (RAG), Embeddings &amp; vector search, Evals, Responsible AI
 
       - category: Languages &amp; Backend
         items: Java, Python, .NET, TypeScript, SQL, Spring Boot, Microservices, Event-driven architecture, System design
