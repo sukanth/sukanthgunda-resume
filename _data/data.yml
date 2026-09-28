@@ -91,20 +91,21 @@ career-profile:
     title: Professional Summary
     # Keep this tight. It is the only paragraph most recruiters read in full.
     summary: |
-      Senior Software Engineer at Microsoft, 12+ years across backend and distributed
-      systems, now **leading agentic AI platforms** that shift quality, security, and
-      compliance left across large engineering organizations. Previously led
-      **Electronic Health Record** feature releases at Oracle. Author of
-      [mindmark](https://github.com/sukanth/mindmark), a Python semantic-search CLI
-      with on-device embeddings; contributor to the Microsoft SARIF SDK and GitHub
-      Desktop.
+      Senior Software Engineer at Microsoft who turns **agentic AI** from
+      demonstrations into production systems engineering organizations depend on
+      daily — platforms where specialized agents, policy-as-code, and evaluation
+      harnesses move quality, security, and compliance into the **developer inner
+      loop**. **12+ years** in backend and distributed systems underneath it: the
+      judgment to know what to automate, what stays human-reviewed, and how to
+      operate it once it ships.
 
     # Used verbatim for meta description and JSON-LD so machine-readable copy
     # never drifts from, or truncates, the summary above.
     short_summary: >
-      Senior Software Engineer at Microsoft leading agentic AI platforms — multi-agent
-      orchestration, Microsoft Agent Framework, Copilot skills and MCP servers — with a
-      backend foundation in Java, Spring Boot, and distributed systems.
+      Senior Software Engineer at Microsoft leading agentic AI platforms — specialized
+      agents, policy-as-code, and evaluation harnesses that move quality, security, and
+      compliance into the developer inner loop — on 12+ years of backend and
+      distributed systems.
 
 skills:
     title: Technical Skills
