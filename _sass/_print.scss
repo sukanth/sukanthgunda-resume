@@ -327,6 +327,13 @@
       font-weight: 700 !important;
       color: #16181d !important;
       margin: 0 !important;
+
+      a {
+        color: #16181d !important;
+        text-decoration: underline !important;
+        text-decoration-color: #9aa3b0 !important;
+        text-underline-offset: 1.5px;
+      }
     }
     .cert-org {
       display: inline !important;
@@ -569,6 +576,15 @@
         display: inline !important;
         font-size: 8.7pt !important;
         font-weight: 700 !important;
+
+        /* Chromium keeps <a> as a clickable annotation in the PDF; the hairline
+           underline is the only cue a reader gets that it is verifiable. */
+        a {
+          color: #16181d !important;
+          text-decoration: underline !important;
+          text-decoration-color: #9aa3b0 !important;
+          text-underline-offset: 1.5px;
+        }
       }
       .cert-org {
         display: inline !important;

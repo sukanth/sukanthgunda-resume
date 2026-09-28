@@ -256,21 +256,15 @@ education:
 
 certifications:
     title: Certifications
-    # Credential IDs are recorded here for your reference but are deliberately not
-    # printed — they are long, and a recruiter verifies through the issuer's
-    # credential link rather than by reading an ID off a resume.
-    #
-    # Two further credentials are held but left off as lower signal for senior
-    # engineering roles: "SkillUp AI Vibe Coding Challenge" (Microsoft) and
-    # "ESS 101 - Apache Hadoop Essentials" (MapR). Add them back if a specific
-    # role makes them relevant.
+    # Each entry links to the issuer's verification page, so the credential is
+    # one click from both the web page and the PDF.
     list:
       - name: "GitHub Certified: Agentic AI Developer"
         start: 2026
         end:
         organization: Microsoft
         credentialid: 3C60BA8831183297 # expires Sep 2027
-        credentialurl:
+        credentialurl: https://learn.microsoft.com/en-us/users/sukanthgunda-8809/credentials/3c60ba8831183297
         credentialname:
         details:
 
@@ -279,7 +273,7 @@ certifications:
         end:
         organization: Microsoft
         credentialid:
-        credentialurl:
+        credentialurl: https://www.credly.com/badges/e326a253-12ea-4aea-922e-7472180ca1e7/public_url
         credentialname:
         details:
 
@@ -288,7 +282,7 @@ certifications:
         end:
         organization: Oracle
         credentialid:
-        credentialurl:
+        credentialurl: https://catalog-education.oracle.com/ords/certview/sharebadge?id=CD2D723BA4B386E4BD7D8F6F02E9FB4DEA86C540D029FBF246C4EE69F232201C
         credentialname:
         details:
 
@@ -297,7 +291,16 @@ certifications:
         end:
         organization: The Linux Foundation
         credentialid: c7f5d3ef-d62a-4dac-a88e-d43de9cae689
-        credentialurl:
+        credentialurl: https://www.credly.com/badges/c7f5d3ef-d62a-4dac-a88e-d43de9cae689/public_url
+        credentialname:
+        details:
+
+      - name: Microsoft Global Hackathon 2024
+        start: 2024
+        end:
+        organization: Microsoft
+        credentialid:
+        credentialurl: https://www.credly.com/badges/8ac822a4-3d68-42b1-b421-eac8966f9956/public_url
         credentialname:
         details:
 
@@ -306,7 +309,7 @@ certifications:
         end:
         organization: The Linux Foundation
         credentialid: LF-ruvtsio1ZZ
-        credentialurl:
+        credentialurl: https://www.credly.com/badges/6986fdc5-e24e-45c5-a54d-7c3dd21f1432/public_url
         credentialname:
         details:
 
@@ -315,9 +318,21 @@ certifications:
         end:
         organization: Oracle
         credentialid: D2D126B3379E00773881DBA0B4CAF52E0003297CA173E7BAD2B042C67D659B28
-        credentialurl:
+        credentialurl: https://catalog-education.oracle.com/ords/certview/sharebadge?id=D2D126B3379E00773881DBA0B4CAF52E0003297CA173E7BAD2B042C67D659B28
         credentialname:
         details:
+
+      # Held and verifiable, but left off the resume: "Vibe Coding" as a listed
+      # skill reads as unserious for senior engineering roles. Uncomment to
+      # include it.
+      # - name: SkillUp AI Vibe Coding Challenge
+      #   start:
+      #   end:
+      #   organization: Microsoft
+      #   credentialid: ca27a90c-c3e6-41a8-ae8b-addb5f6f89f8
+      #   credentialurl: https://www.credly.com/badges/ca27a90c-c3e6-41a8-ae8b-addb5f6f89f8/public_url
+      #   credentialname:
+      #   details:
 
 footer: >
     Built with <i class="fas fa-heart" aria-hidden="true"></i> by Sukanth Gunda — based on the <a href="https://github.com/sharu725/online-cv" target="_blank" rel="noopener nofollow">online-cv</a> Jekyll theme by <a href="http://themes.3rdwavemedia.com" target="_blank" rel="noopener nofollow">Xiaoying Riley</a>.

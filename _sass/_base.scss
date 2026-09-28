@@ -327,8 +327,16 @@ b {
       line-height: 1.4;
       color: #fff;
       margin: 0 0 2px;
+
       a {
         color: #fff;
+        text-decoration: underline;
+        text-decoration-color: rgba(255, 255, 255, 0.35);
+        text-underline-offset: 2px;
+
+        &:hover {
+          text-decoration-color: #fff;
+        }
       }
     }
     .cert-org,

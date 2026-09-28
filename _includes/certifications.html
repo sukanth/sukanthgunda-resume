@@ -16,11 +16,13 @@
   <div class="item">
     <h3 class="cert-title">
       {%- if certification.credentialurl -%}
-      <a href="//{{ certification.credentialurl }}" target="_blank" rel="noopener noreferrer">{{ certification.name }}</a>
+      {%- assign cert_href = certification.credentialurl -%}
+      {%- unless cert_href contains "://" -%}{%- assign cert_href = "https://" | append: cert_href -%}{%- endunless -%}
+      <a href="{{ cert_href }}" target="_blank" rel="noopener noreferrer">{{ certification.name }}</a>
       {%- else -%}
       {{ certification.name }}
       {%- endif -%}
-    </h3><div class="cert-org">{{ certification.organization }}</div><div class="time">{{ certification.start }}{% if certification.end %} – {{ certification.end }}{% endif %}</div>
+    </h3><div class="cert-org">{{ certification.organization }}</div>{% if certification.start %}<div class="time">{{ certification.start }}{% if certification.end %} – {{ certification.end }}{% endif %}</div>{% endif %}
   </div>
   {% endfor %}
 
@@ -43,11 +45,13 @@
   <div class="item">
     <h3 class="cert-title">
       {%- if certification.credentialurl -%}
-      <a href="//{{ certification.credentialurl }}" target="_blank" rel="noopener noreferrer">{{ certification.name }}</a>
+      {%- assign cert_href = certification.credentialurl -%}
+      {%- unless cert_href contains "://" -%}{%- assign cert_href = "https://" | append: cert_href -%}{%- endunless -%}
+      <a href="{{ cert_href }}" target="_blank" rel="noopener noreferrer">{{ certification.name }}</a>
       {%- else -%}
       {{ certification.name }}
       {%- endif -%}
-    </h3><div class="cert-org">{{ certification.organization }}</div><div class="time">{{ certification.start }}{% if certification.end %} – {{ certification.end }}{% endif %}</div>
+    </h3><div class="cert-org">{{ certification.organization }}</div>{% if certification.start %}<div class="time">{{ certification.start }}{% if certification.end %} – {{ certification.end }}{% endif %}</div>{% endif %}
   </div>
   {% endfor %}
 </section>
