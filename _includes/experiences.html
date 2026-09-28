@@ -2,11 +2,7 @@
 {% if experiences %}
 <section class="section experiences-section">
   <h2 class="section-title">
-    <span class="fa-stack fa-xs">
-      <i class="fas fa-circle fa-stack-2x"></i>
-      <i class="fas fa-briefcase fa-stack-1x fa-inverse"></i>
-    </span>
-    {{ experiences.title }}
+        {{ experiences.title }}
   </h2>
 
   {% for experience in experiences.info %}
@@ -27,6 +23,16 @@
     <div class="details">
       {{ experience.details | markdownify }}
     </div><!--//details-->
+    {% endif %}
+
+    {%- comment -%}
+      Extra depth for the web page only. The PDF is a deliberate one-pager, so
+      _print.scss hides anything marked `web-only`.
+    {%- endcomment -%}
+    {% if experience.extended %}
+    <div class="details web-only">
+      {{ experience.extended | markdownify }}
+    </div><!--//extended-->
     {% endif %}
 
   </div><!--//item-->

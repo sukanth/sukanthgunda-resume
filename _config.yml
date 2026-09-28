@@ -1,34 +1,59 @@
-#Update all the sections by editing the data.yml file inside _data folder.
+# All resume content lives in _data/data.yml — edit that file, not this one.
 
 # Site Settings
 title: Sukanth Gunda · Senior Software Engineer
-url: 'https://resume.sukanthgunda.com'
+url: "https://resume.sukanthgunda.com"
 
-#change it according to your repository name
-# disabling since we are using a custom domain
-#baseurl: '/online-cv' 
+# Custom domain is configured via CNAME, so no baseurl is needed.
+#baseurl: '/online-cv'
 
-description: Sukanth Gunda — Senior Software Engineer building reliable, scalable systems at Microsoft. Previously Oracle, Capgemini.
-# Style will be applied only after restarting the build or serve. Just choose one of the options.
-theme_skin: oceanstale # blue turquoise green berry orange ceramic teal oceanstale
-chrome_mobile_color: "#0c5174" #use hex colors (ex:#1976d2) or leave empty if you don't want a color for chrome mobile searchbar
+# Fallback only. Pages use career-profile.short_summary from _data/data.yml so
+# the meta description and JSON-LD cannot drift from the resume itself.
+description: >-
+  Sukanth Gunda — Senior Software Engineer at Microsoft building agentic AI
+  developer tooling: GitHub Copilot skills, LLM agents, and Model Context
+  Protocol (MCP) servers.
 
-# Tracker
-analytics: UA-83979019-1
+# Style is applied at build time. Options: blue turquoise green berry orange ceramic teal oceanstale
+theme_skin: oceanstale
+chrome_mobile_color: "#183948" # hex colour for the Chrome mobile search bar
+
+# Analytics
+# The previous value was a Universal Analytics property (UA-...). Google shut
+# Universal Analytics down in July 2023, so that tag collected nothing and only
+# added a blocking third-party script. Put a GA4 measurement ID ("G-XXXXXXXXXX")
+# here to re-enable analytics, or leave it blank to ship no tracking at all.
+analytics:
 
 # Sass/SCSS
 sass:
   sass_dir: _sass
-  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+  style: compressed
 
 # Build settings
 compress-site: yes
-
 encoding: "utf-8"
-compress_html: # - http://jch.penibelst.de/
+
+compress_html: # http://jch.penibelst.de/
   clippings: all
   ignore:
     envs: development
+
+# Files that should never end up in the published site.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - LICENSE.md
+  - docker-compose.yml
+  - vendor
+  - node_modules
+  - package.json
+  - package-lock.json
+  - .idea
+  - .github
+  - .playwright-mcp
+  - "*.png.bak"
 
 # Development Settings
 port: 4000

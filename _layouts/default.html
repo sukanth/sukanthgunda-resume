@@ -2,33 +2,50 @@
 #Add "layout: compress" here to compress the html code
 ---
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="en"> <!--<![endif]-->
+<html lang="en">
 {% include head.html %}
 
 <body>
-  <button onclick="print()" class="print-button d-print-none">
-    <i class="fas fa-file-pdf"></i>Print
-  </button>
+  <a href="#resume-content" class="skip-link">Skip to resume content</a>
 
-  <button onclick="generatePDF()" class="pdf-button d-print-none" id="pdfButton">
-    <i class="fas fa-file-pdf"></i>PDF
-  </button>
+  <div class="doc-actions d-print-none">
+    {%- assign static_pdf = site.data.data.sidebar.pdf -%}
+    {%- if static_pdf and static_pdf != "" -%}
+    <a class="doc-action" href="{{ static_pdf | relative_url }}"
+      title="Download a text-selectable, single-column PDF">
+      <i class="fas fa-file-arrow-down" aria-hidden="true"></i><span>Download PDF</span>
+    </a>
+    {%- else -%}
+    <a class="doc-action" href="{{ '/print?print=1' | relative_url }}" target="_blank" rel="noopener"
+      title="Open a print-ready, single-column version and save it as a text-selectable PDF">
+      <i class="fas fa-file-arrow-down" aria-hidden="true"></i><span>Download PDF</span>
+    </a>
+    {%- endif -%}
+  </div>
 
   <div class="wrapper">
     {% include sidebar.html %}
 
-    <div class="main-wrapper">
+    <main class="main-wrapper" id="resume-content" tabindex="-1">
       {{ content }}
-    </div>
+
+      {%- comment -%}
+        Printing straight from this page (Ctrl+P) must not lead with the
+        sidebar's education block. These copies are hidden on screen and shown
+        only when printing, where the sidebar originals are hidden instead — so
+        the printed order matches /print without needing flexbox `order`, which
+        paginates badly.
+      {%- endcomment -%}
+      <div class="print-only-tail">
+        {% include skills.html %}
+        {% include certifications.html %}
+        {% include education.html %}
+      </div>
+    </main>
   </div>
 
   {% include footer.html %}
-
   {% include scripts.html %}
-  <script src="{{ site.baseurl }}/assets/js/pdf-generator.js"></script>
 </body>
 
 </html>

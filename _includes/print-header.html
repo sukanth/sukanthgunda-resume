@@ -1,0 +1,18 @@
+{%- comment -%}
+  Header for the print/PDF layout: name, tagline, and contact details as a
+  normal resume header.
+
+  The print page deliberately does NOT reuse sidebar.html. Education, languages
+  and interests are emitted at the END of print.html instead, so the printed
+  document reads in true resume order (summary -> experience -> ... ->
+  education) rather than leading with the sidebar's education block.
+{%- endcomment -%}
+{%- assign sidebar = site.data.data.sidebar -%}
+<header class="sidebar-wrapper print-header">
+  <div class="profile-container">
+    {% if sidebar.name %}<h1 class="name">{{ sidebar.name }}</h1>{% endif %}
+    {% if sidebar.tagline %}<p class="tagline">{{ sidebar.tagline }}</p>{% endif %}
+  </div>
+
+  {% include contact.html %}
+</header>

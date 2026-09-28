@@ -1,0 +1,104 @@
+name: Build and deploy resume
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let an in-flight deploy finish; never run two at once.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler: latest
+          bundler-cache: true
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build site
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
+
+      # The PDF is rendered with Chromium's real print engine, so the text
+      # layer stays selectable and applicant tracking systems can parse it.
+      # Canvas-rasterising libraries (html2pdf / html2canvas) produce an image
+      # that every ATS reads as an empty document.
+      - name: Install PDF tooling
+        run: |
+          npm install --no-save playwright@1.49.1
+          npx playwright install --with-deps chromium
+
+      - name: Render ATS-parseable PDF
+        run: node .github/scripts/render-pdf.js
+
+      # Guards the failure mode that matters: a PDF that looks perfect to a
+      # human but is an image, or is missing the contact details, to a parser.
+      - name: Verify the PDF has a real text layer
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+          # Collapse newlines first: pdftotext breaks a line wherever the PDF
+          # does, so a phrase that wraps would otherwise never match.
+          pdftotext -nopgbrk _site/Sukanth_Gunda_Resume.pdf - \
+            | tr '\n' ' ' | tr -s ' ' > /tmp/resume.txt
+          WORDS=$(wc -w < /tmp/resume.txt)
+          echo "Extracted $WORDS words from the generated PDF."
+          # The resume is a deliberate one-pager (~430 words). This floor only
+          # needs to catch a rasterised or truncated PDF, not police length.
+          if [ "$WORDS" -lt 320 ]; then
+            echo "::error::PDF text layer looks empty, rasterised or truncated ($WORDS words). Refusing to deploy."
+            exit 1
+          fi
+          # Spot-check the contact header, each major section, and the first
+          # and last employers, so a silently dropped page fails the build.
+          while IFS= read -r TERM; do
+            [ -z "$TERM" ] && continue
+            if ! grep -qiF "$TERM" /tmp/resume.txt; then
+              echo "::error::Expected text '$TERM' missing from the PDF text layer."
+              exit 1
+            fi
+          done <<'TERMS'
+          Sukanth Gunda
+          contact.sukanth@gmail.com
+          PROFESSIONAL SUMMARY
+          TECHNICAL SKILLS
+          WORK EXPERIENCE
+          EDUCATION
+          Microsoft
+          Capgemini
+          Model Context Protocol
+          mindmark
+          University of Central Missouri
+          TERMS
+          echo "PDF text layer verified."
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

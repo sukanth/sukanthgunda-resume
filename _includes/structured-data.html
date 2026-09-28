@@ -1,0 +1,125 @@
+{%- comment -%}
+  schema.org JSON-LD for the resume.
+
+  Search engines, recruiter sourcing tools, and LLM-based agents read this to
+  work out who the page is about instead of inferring it from prose. Generated
+  entirely from _data/data.yml so it cannot drift from the rendered resume.
+
+  Deliberately omitted: telephone, postal address, and home location. Those
+  would turn a personal phone number and street-level location into structured,
+  trivially harvestable fields for every scraper that reads the page. Email and
+  the social profiles are enough for a recruiter to make contact.
+{%- endcomment -%}
+{%- assign sidebar = site.data.data.sidebar -%}
+{%- assign profile = site.data.data.career-profile -%}
+{%- assign experiences = site.data.data.experiences.info -%}
+{%- assign education = site.data.data.education.info -%}
+{%- assign skill_groups = site.data.data.skills.groups -%}
+
+{%- assign current_job = experiences | first -%}
+{%- assign current_company = current_job.company | split: ", " | first | strip -%}
+
+{%- comment -%} Flatten every skill group into one keyword list. {%- endcomment -%}
+{%- assign all_skills = "" -%}
+{%- for group in skill_groups -%}
+  {%- assign all_skills = all_skills | append: group.items | append: ", " -%}
+{%- endfor -%}
+{%- assign skill_list = all_skills | replace: "&amp;", "and" | split: ", " -%}
+
+{%- comment -%}
+  Use the hand-written short summary. Truncating the long one by character
+  count cut it mid-word ("...Java, Sprin") and could leak raw markdown.
+{%- endcomment -%}
+{%- assign bio = profile.short_summary | strip_html | normalize_whitespace | strip -%}
+{%- assign home_url = "/" | absolute_url -%}
+
+{%- capture person_json -%}
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": {{ home_url | append: "#person" | jsonify }},
+  "name": {{ sidebar.name | jsonify }},
+  "givenName": {{ sidebar.name | split: " " | first | jsonify }},
+  "familyName": {{ sidebar.name | split: " " | last | jsonify }},
+  "jobTitle": {{ current_job.role | jsonify }},
+  "description": {{ bio | jsonify }},
+  "url": {{ home_url | jsonify }},
+  "mainEntityOfPage": {{ home_url | jsonify }}
+  {%- if sidebar.avatar -%},
+  "image": {{ "/assets/images/" | append: sidebar.avatar | absolute_url | jsonify }}
+  {%- endif -%}
+  {%- if sidebar.email -%},
+  "email": {{ "mailto:" | append: sidebar.email | jsonify }}
+  {%- endif -%}
+  {%- if sidebar.location -%},
+  "workLocation": {
+    "@type": "Place",
+    "name": {{ sidebar.location | jsonify }}
+  }
+  {%- endif -%},
+  "sameAs": [
+    {%- assign links = "" -%}
+    {%- if sidebar.linkedin -%}{%- assign links = links | append: "https://www.linkedin.com/in/" | append: sidebar.linkedin | append: "|" -%}{%- endif -%}
+    {%- if sidebar.github -%}{%- assign links = links | append: "https://github.com/" | append: sidebar.github | append: "|" -%}{%- endif -%}
+    {%- if sidebar.twitter -%}{%- assign links = links | append: "https://twitter.com/" | append: sidebar.twitter | append: "|" -%}{%- endif -%}
+    {%- assign link_list = links | split: "|" -%}
+    {%- for link in link_list -%}
+    {{ link | jsonify }}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": {{ current_company | jsonify }}
+  },
+  "hasOccupation": {
+    "@type": "Occupation",
+    "name": {{ current_job.role | jsonify }},
+    "occupationalCategory": "15-1252.00 Software Developers"
+  },
+  "alumniOf": [
+    {%- for school in education -%}
+    {
+      "@type": "CollegeOrUniversity",
+      "name": {{ school.university | replace: "&amp;", "and" | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ],
+  "knowsAbout": [
+    {%- for skill in skill_list -%}
+    {%- assign clean_skill = skill | strip -%}
+    {%- if clean_skill != "" -%}
+    {{ clean_skill | jsonify }}{% unless forloop.last %},{% endunless %}
+    {%- endif -%}
+    {%- endfor -%}
+  ],
+  "knowsLanguage": [
+    {%- for language in sidebar.languages.info -%}
+    {
+      "@type": "Language",
+      "name": {{ language.idiom | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+{%- endcapture -%}
+
+<script type="application/ld+json">
+{{ person_json }}
+</script>
+
+{%- comment -%}
+  Only the canonical page claims to be the profile page. /print is noindex and
+  would otherwise assert that it is the home page.
+{%- endcomment -%}
+{%- unless page.noindex -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "url": {{ home_url | jsonify }},
+  "name": {{ site.title | jsonify }},
+  "dateModified": "{{ site.time | date_to_xmlschema }}",
+  "mainEntity": { "@id": {{ home_url | append: "#person" | jsonify }} }
+}
+</script>
+{%- endunless -%}

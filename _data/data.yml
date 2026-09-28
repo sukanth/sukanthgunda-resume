@@ -1,26 +1,45 @@
 #
-# Sukanth Gunda — Resume data
-# Edit this file to update the resume content rendered at https://resume.sukanthgunda.com
+# Sukanth Gunda — resume content.
+# Rendered at https://resume.sukanthgunda.com
+#
 # YAML is whitespace-sensitive — preserve indentation.
 #
-# NOTE: Several bullets below describe typical senior-engineering impact areas.
-# Please tailor them to your specific projects, teams, and metrics before sharing widely.
+# Conventions worth keeping when you edit:
+#   * Section titles use the standard headings applicant tracking systems
+#     recognise ("Professional Summary", "Work Experience", "Technical
+#     Skills", "Education", "Projects"). Renaming them to something creative
+#     makes parsers drop or misfile the section.
+#   * Dates use one consistent format throughout. If you add months, use
+#     "Mon YYYY" ("Jan 2024 – Present") everywhere — never mix formats.
+#   * Skills are plain comma-separated text, not percentage bars: a parser
+#     reads text, and cannot read a CSS bar width.
+#   * Job titles are spelled out in full ("Senior Software Engineer", never
+#     "Sr. SWE") so keyword matching works.
+#   * Bullets are one or two lines, three to six per role, each opening with a
+#     strong verb and naming something concrete.
+#   * Only list a skill you would be happy to be interviewed on.
 #
 
 sidebar:
     position: right # position of the sidebar : left or right
     about: False # set to False or comment line if you want to remove the "how to use?" in the sidebar
     education: True # set to False if you want education in main section instead of in sidebar
+    certifications: True # sidebar on the web page; the PDF always keeps them in the linear flow
+    skills: True # same: sidebar on the web, main column in the PDF
 
     # Profile information
     name: Sukanth Gunda
     tagline: Senior Software Engineer · Agentic AI &amp; Developer Platforms
     avatar: sukanthgunda.png  #place a 100x100 picture inside /assets/images/ folder and provide the name of the file below
 
-    # Sidebar links
+    # Sidebar links.
+    # `phone` is published on a public page and inside machine-readable
+    # metadata. Leave it blank if you would rather recruiters go through email
+    # or LinkedIn, and put the number only on the copies you send directly.
     email: contact.sukanth@gmail.com
     phone: +1-816-299-8845
-    timezone: America/New_York
+    location: Atlanta, GA
+    timezone:
     citizenship:
     website: https://resume.sukanthgunda.com
     linkedin: sukanthgunda
@@ -36,200 +55,250 @@ sidebar:
     mastodon:
     hackerrank:
     leetcode:
-    pdf:
+    # Set once GitHub Actions has deployed at least once; the workflow renders
+    # this file with Chromium so the text layer stays selectable.
+    pdf: /Sukanth_Gunda_Resume.pdf
 
+    # Proficiency levels mirror the Languages section of the LinkedIn profile.
     languages:
       title: Languages
       info:
-        - idiom: Telugu
-          level: Native
-
         - idiom: English
           level: Professional
 
-        - idiom: Hindi
+        - idiom: Telugu
           level: Professional
+
+        - idiom: Hindi
+          level: Limited working
+
+        - idiom: Tamil
+          level: Limited working
 
     interests:
       title: Interests
       info:
+        - item: Building developer tools
+          link:
+
         - item: Cricket
           link:
 
         - item: Travel
           link:
 
-        - item: Mentoring early-career engineers
-          link:
-
 career-profile:
-    title: Career Profile
+    title: Professional Summary
+    # Keep this tight. It is the only paragraph most recruiters read in full.
     summary: |
-      Senior Software Engineer with over a decade of experience designing, building,
-      and operating large-scale distributed systems across cloud, enterprise, and
-      healthcare technology. Currently at **Microsoft**, building **agentic AI
-      developer tooling** — Copilot skills, orchestrator agents, and MCP (Model
-      Context Protocol) servers — that help engineers across the company remediate
-      security &amp; compliance violations and ship with confidence under the
-      **Secure Future Initiative (SFI)**.
+      Senior Software Engineer at Microsoft, 12+ years across backend and distributed
+      systems, now **leading agentic AI platforms** that shift quality, security, and
+      compliance left across large engineering organizations. Previously led
+      **Electronic Health Record** feature releases at Oracle. Author of
+      [mindmark](https://github.com/sukanth/mindmark), a Python semantic-search CLI
+      with on-device embeddings; contributor to the Microsoft SARIF SDK and GitHub
+      Desktop.
 
-      Previously at **Oracle** and **Capgemini**, with a track record of shipping
-      resilient services, improving developer productivity, and turning ambiguous
-      problems into reliable products. Passionate about where **LLMs meet developer
-      workflows** — prompt design, retrieval-augmented generation, and safe,
-      auditable automation of real engineering work. I care deeply about clean
-      architecture, pragmatic engineering, and raising the bar for the teams I work
-      with through code reviews, design guidance, and mentoring early-career
-      engineers in the Cerner Developer Center community.
+    # Used verbatim for meta description and JSON-LD so machine-readable copy
+    # never drifts from, or truncates, the summary above.
+    short_summary: >
+      Senior Software Engineer at Microsoft leading agentic AI platforms — multi-agent
+      orchestration, Microsoft Agent Framework, Copilot skills and MCP servers — with a
+      backend foundation in Java, Spring Boot, and distributed systems.
+
+skills:
+    title: Technical Skills
+    # Deliberately short. Keyword coverage already lives in the summary and the
+    # experience bullets; this block exists so an ATS keyword scan finds the
+    # terms in one place, not to pad the resume. Four groups, one line each.
+    #
+    # Everything here should be something you can be interviewed on. Kubernetes
+    # and OCI are listed on the strength of the certifications below. Still left
+    # out for want of evidence — add back any you have production experience
+    # with: Apache Kafka, Spring Batch, OpenTelemetry, OAuth 2.0 / OpenID
+    # Connect, secrets management, Azure OpenAI, event-driven architecture.
+    groups:
+      - category: AI &amp; Agentic Systems
+        items: Agentic AI, Multi-agent orchestration, Microsoft Agent Framework, Azure OpenAI, LLM application development, Model Context Protocol (MCP), RAG, Embeddings &amp; vector search, Evals, Responsible AI
+
+      - category: Languages &amp; Backend
+        items: Java, Python, .NET, TypeScript, SQL, Spring Boot, Microservices, Event-driven architecture, System design
+
+      - category: Cloud, Data &amp; Security
+        items: Microsoft Azure, Azure Functions, Cosmos DB, Service Bus, Kusto, AWS, Oracle Cloud Infrastructure (OCI), Kubernetes, Docker, CI/CD, SLOs &amp; observability, Policy-as-code, SARIF, Secure SDLC
+
+experiences:
+    title: Work Experience
+    info:
+      - role: Senior Software Engineer
+        time: Jul 2024 – Present
+        company: Microsoft, Atlanta, GA
+        details: |
+            - **Own the problem space** for developer-first reliability and compliance
+              platforms — setting technical direction, resolving ambiguity, and taking
+              systems from strategy to production-hardened service.
+            - **Architect multi-agent evaluation systems** on **Azure OpenAI** and the
+              open-source **Microsoft Agent Framework** — dispatcher, specialized
+              analysis agents, aggregator, and reviewer — returning inline
+              pull-request feedback, blocking checks, and auto-apply fixes.
+            - Shift quality, security, and **Responsible AI** governance **left into
+              the developer inner loop** as policy-as-code gates enforced at pull
+              request time.
+            - Build event-driven services on **.NET and Python Azure Functions, Cosmos
+              DB, Service Bus, and Kusto**, with **SARIF** as a common contract and
+              pluggable analyzers.
+            - **Drive alignment across engineering, security, and identity partner
+              teams**, and extend reach into the IDE through **VS Code** and **Model
+              Context Protocol (MCP)** integrations.
+            - Operate what I build — **SLOs, telemetry, on-call ownership** — and grow
+              engineers through mentoring and architecture reviews.
+
+        extended: |
+            - Co-authored the strategy for a **developer-first reliability control
+              plane** that turns reliability, security, compliance, and operational
+              readiness into policy-as-code gates and agentic workflows spanning
+              build, validation, release, and operations.
+            - Designed analyzers that evaluate customer-facing **error message
+              quality** at pull-request time — clarity, actionability, Azure Resource
+              Manager compliance, and PII safety — with a reviewer agent that strips
+              duplicates and false positives before anything reaches the author.
+            - Built quality analyzers for **operational documentation** that score
+              completeness, content quality, and readability, track quality trends
+              over time, and emit **SARIF** so results are machine-readable and
+              chartable.
+            - Extended platform reach into the IDE and authoring tools through
+              **plugin integrations**, so engineers get feedback where they already
+              work instead of in a separate portal.
+            - Favour **specialized agents plus deterministic orchestration** over a
+              single generic model call, so results are reproducible, explainable,
+              and safe to act on automatically.
+            - Instrument everything with **Azure Data Explorer / Kusto** telemetry and
+              use it to prove impact and target the next increment.
+
+      - role: Senior Software Engineer
+        time: Nov 2018 – Jul 2024
+        company: Oracle, San Antonio, TX
+        details: |
+            - **Led feature releases** for **Electronic Health Record (EHR)**
+              applications, designing **Java / Spring Boot** services that interface
+              external systems and government health registries.
+            - Built interoperability middleware bridging external system interfaces
+              and the EHR for healthcare data exchange.
+            - **Owned** migration of Java applications and workloads from **AWS** to
+              **Oracle Cloud Infrastructure**.
+            - Mentored new associates as a volunteer **Cerner Developer Center**
+              mentor since 2018 — code reviews and architecture guidance.
+
+        extended: |
+            - Worked across **Electronic Health Record** interfaces and government
+              health registries, building middleware that let external and foreign
+              systems exchange clinical data with the EHR.
+            - Partnered with SRE and platform teams on **observability, alert tuning,
+              and incident runbooks**, reducing on-call toil.
+            - Established secure-coding, error-handling, and **backward-compatible API
+              evolution** patterns through RFCs, design reviews, and
+              production-readiness reviews.
+            - Strengthened **CI/CD and automated regression testing** so defects
+              surfaced before release rather than in production.
+            - Coached engineers through the Cerner Developer Center on code review,
+              architecture, and engineering fundamentals.
+
+      - role: Lead Software Engineer
+        time: Aug 2017 – Nov 2018
+        company: Capgemini, Atlanta, GA
+        details: |
+            - Promoted from Consultant to Lead Software Engineer; led a delivery team
+              and owned modules from requirements through production handoff.
+            - Earlier at Capgemini in Chennai, India (Feb 2013 – Jul 2016): built
+              **Java / J2EE** web applications and batch jobs through full SDLC.
+
+        extended: |
+            - Coached engineers on coding standards, debugging, and release
+              discipline; unblocked the team on complex technical issues.
+            - Delivered enterprise application modules end to end — requirements,
+              technical design, build, deployment, and production handoff — working
+              directly with client architects and product owners.
+            - In Chennai, covered the full cycle on **Java / J2EE** web applications
+              and batch jobs: analysis, design, coding, deployment, and testing,
+              including performance tuning and production defect triage.
 
 education:
     title: Education
     info:
-      - degree: M.S. in Computer Information Systems &amp; Information Technology
+      - degree: M.S., Computer Information Systems &amp; Information Technology
         university: University of Central Missouri
-        time: 2016 - 2017
+        time: Aug 2016 – Dec 2017
         details: |
-          Graduate coursework focused on software engineering, distributed systems,
-          database management, and applied data analytics. Emphasis on building
-          production-grade software and translating theory into working systems.
-      - degree: B.Tech in Computer Science &amp; Engineering
+          Graduate Research Assistant
+      - degree: B.Tech., Information Technology
         university: V. R. Siddhartha Engineering College
-        time: 2008 - 2012
-        details: |
-          Core computer science foundation — algorithms, operating systems, networks,
-          databases, and software engineering — with hands-on project work that
-          sparked a long-term interest in building reliable, scalable software.
-
-experiences:
-    title: Experience
-    info:
-      - role: Senior Software Engineer
-        time: 2024 - Present
-        company: Microsoft · Atlanta, GA
-        details: |
-          Building **agentic AI developer tooling** in the Secure Future Initiative
-          (SFI) space — Copilot skills, orchestrator agents, and Model Context
-          Protocol (MCP) servers that help thousands of engineers across Microsoft
-          turn compliance work into guided, high-signal AI workflows.
-
-            - Designed and shipped LLM-powered skills and orchestrator agents that
-              diagnose and remediate security &amp; compliance violations (SFI/QEI)
-              across authentication, networking, storage, and identity controls —
-              shifting remediation from manual toil to guided AI pair-programming.
-            - Built MCP servers and Copilot extensions that ground agents in
-              real engineering context — source repos, deployment systems,
-              compliance KPIs, and troubleshooting guides — for accurate,
-              auditable automation.
-            - Applied **prompt engineering, retrieval-augmented generation (RAG),
-              and structured tool use** patterns to deliver reliable, repeatable
-              outcomes; added execution-signal capture to close the feedback loop
-              and continuously improve skill quality.
-            - Partnered with security, platform, and DevEx orgs to reduce
-              time-to-approve on deployment requests and accelerate adoption of
-              SFI standards through evidence-backed review briefs and
-              auto-approval pathways.
-            - Drive engineering fundamentals — code quality, test coverage,
-              telemetry, and on-call excellence — while mentoring peers on
-              building effective agentic systems.
-            - Contributor to Microsoft's culture of giving through the annual
-              Microsoft Give Campaign.
-
-      - role: Senior Software Engineer
-        time: 2018 - 2024
-        company: Oracle · Atlanta, GA
-        details: |
-          Spent six years shipping enterprise-grade software within Oracle's
-          health and cloud engineering organization, growing from senior
-          individual contributor into a trusted technical lead across multiple
-          product areas.
-
-            - Delivered end-to-end features across the stack — from data model
-              and service layer through to client integrations — for mission-critical
-              healthcare workflows.
-            - Led technical design discussions, RFC reviews, and production
-              readiness reviews; mentored engineers on secure coding and
-              operational best practices.
-            - Partnered with SRE and platform teams to improve service
-              reliability, reduce on-call toil, and tighten incident response.
-            - Actively mentored developers in the Cerner Developer Center
-              community (ongoing since 2018).
-
-      - role: Lead Software Engineer
-        time: 2018
-        company: Capgemini · United States
-        details: |
-          Led a feature pod delivering enterprise application work for a Fortune
-          client, balancing hands-on development with technical guidance.
-
-            - Owned design and delivery of key modules, from requirements
-              through production handoff.
-            - Coached engineers on coding standards, debugging, and release
-              discipline; unblocked team members on complex technical issues.
+        time: 2008 – 2012
+        details:
 
 certifications:
-      title: Certifications &amp; Recognition
-      list:
-        - name: Microsoft Give Campaign Contributor
-          start: 2024
-          end:
-          organization: Microsoft
-          credentialid:
-          credentialurl:
-          credentialname:
-          details: |
-            Recognized participant in Microsoft's annual Give Campaign, supporting
-            causes through donations and volunteer hours.
+    title: Certifications
+    # Credential IDs are recorded here for your reference but are deliberately not
+    # printed — they are long, and a recruiter verifies through the issuer's
+    # credential link rather than by reading an ID off a resume.
+    #
+    # Two further credentials are held but left off as lower signal for senior
+    # engineering roles: "SkillUp AI Vibe Coding Challenge" (Microsoft) and
+    # "ESS 101 - Apache Hadoop Essentials" (MapR). Add them back if a specific
+    # role makes them relevant.
+    list:
+      - name: "GitHub Certified: Agentic AI Developer"
+        start: 2026
+        end:
+        organization: Microsoft
+        credentialid: 3C60BA8831183297 # expires Sep 2027
+        credentialurl:
+        credentialname:
+        details:
 
-oss:
-    title: Community &amp; Mentorship
-    intro: >
-      I care about helping other engineers grow. Outside of shipping product, I
-      invest time in mentoring, community contributions, and giving back.
-    contributions:
-      - title: Cerner Developer Center — Mentor
-        link: "https://www.cerner.com/"
-        tagline: "Mentoring developers since Nov 2018 — answering technical questions, guiding architecture and best practices, and supporting engineers as they grow their careers."
+      - name: Microsoft Core Leadership Certificate
+        start: 2025
+        end:
+        organization: Microsoft
+        credentialid:
+        credentialurl:
+        credentialname:
+        details:
 
-      - title: Microsoft Give Campaign
-        link: "https://www.microsoft.com/en-us/corporate-responsibility/philanthropies"
-        tagline: "Annual participant in Microsoft's Give Campaign, contributing time and resources to causes that improve community outcomes."
+      - name: Oracle Cloud Infrastructure 2024 Generative AI Certified Professional
+        start: 2024
+        end:
+        organization: Oracle
+        credentialid:
+        credentialurl:
+        credentialname:
+        details:
 
-skills:
-    title: Skills &amp; Proficiency
+      - name: "LFD121: Developing Secure Software"
+        start: 2024
+        end:
+        organization: The Linux Foundation
+        credentialid: c7f5d3ef-d62a-4dac-a88e-d43de9cae689
+        credentialurl:
+        credentialname:
+        details:
 
-    toolset:
-      - name: Agentic AI &amp; LLM-Powered Tooling
-        level: 90%
+      - name: Kubernetes for App Developers
+        start: 2023
+        end:
+        organization: The Linux Foundation
+        credentialid: LF-ruvtsio1ZZ
+        credentialurl:
+        credentialname:
+        details:
 
-      - name: Prompt Engineering, RAG &amp; Grounding
-        level: 85%
-
-      - name: GitHub Copilot Skills &amp; MCP Servers
-        level: 85%
-
-      - name: Java / Spring &amp; JVM Ecosystem
-        level: 90%
-
-      - name: Cloud &amp; Distributed Systems (Azure, OCI, Azure OpenAI)
-        level: 85%
-
-      - name: Microservices &amp; REST APIs
-        level: 90%
-
-      - name: SQL &amp; Data Modeling (Oracle, SQL Server, PostgreSQL)
-        level: 80%
-
-      - name: JavaScript / TypeScript
-        level: 75%
-
-      - name: CI/CD, Git, Observability
-        level: 85%
-
-      - name: System Design &amp; Architecture
-        level: 85%
-
-      - name: Mentorship &amp; Technical Leadership
-        level: 90%
+      - name: Oracle Cloud Infrastructure Certified Architect Associate
+        start: 2022
+        end:
+        organization: Oracle
+        credentialid: D2D126B3379E00773881DBA0B4CAF52E0003297CA173E7BAD2B042C67D659B28
+        credentialurl:
+        credentialname:
+        details:
 
 footer: >
-    Designed with <i class="fas fa-heart"></i> using the <a href="https://github.com/sharu725/online-cv" target="_blank" rel="nofollow">Orbit</a> Jekyll theme by <a href="http://themes.3rdwavemedia.com" target="_blank" rel="nofollow">Xiaoying Riley</a>.
+    Built with <i class="fas fa-heart" aria-hidden="true"></i> by Sukanth Gunda — based on the <a href="https://github.com/sharu725/online-cv" target="_blank" rel="noopener nofollow">online-cv</a> Jekyll theme by <a href="http://themes.3rdwavemedia.com" target="_blank" rel="noopener nofollow">Xiaoying Riley</a>.

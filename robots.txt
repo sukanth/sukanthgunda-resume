@@ -1,0 +1,56 @@
+# A resume site wants to be found by recruiters and by the retrieval-style AI
+# assistants they increasingly use, so search and user-triggered fetchers are
+# welcome. Crawlers whose stated purpose is model *training* or bulk archiving
+# are declined by default — flip those to "Allow: /" if you would rather be
+# included in training corpora.
+
+User-agent: *
+Allow: /
+Disallow: /print
+
+# --- Search and user-triggered retrieval: allowed ---
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# OpenAI: surfaces pages in ChatGPT search / user-requested fetches
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic: search index and user-triggered fetches
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# --- Model training and bulk archiving: declined by default ---
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+Sitemap: https://resume.sukanthgunda.com/sitemap.xml

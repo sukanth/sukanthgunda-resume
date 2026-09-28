@@ -1,64 +1,116 @@
-/* Extra small devices (phones, less than 768px) */
-@media (max-width: 767px) {
+/* ======= Responsive ======= */
+
+/* Phones.
+   Scoped to `screen` deliberately: Chromium evaluates width media queries
+   against the PAGE width when printing, and a Letter page is ~733px — inside
+   this breakpoint. Without the `screen` qualifier these phone rules applied to
+   the PDF, where `flex: 1 1 100%` on job titles pushed every date onto its own
+   line. */
+@media screen and (max-width: 767px) {
   body {
     padding: 0;
+    font-size: 14.5px;
+  }
+
+  .wrapper {
+    display: block;
+    border-radius: 0;
+    box-shadow: none;
   }
 
   .sidebar-wrapper {
     position: static;
-    width: inherit;
+    width: 100%;
+
+    .profile-container {
+      padding: 32px 24px 26px;
+    }
+    .name {
+      font-size: 25px;
+    }
+    .container-block {
+      padding: 24px;
+    }
+  }
+
+  .main-wrapper {
+    padding: 32px 24px 36px;
+
+    .section {
+      margin-bottom: 36px;
+    }
+
+    .upper-row {
+      margin-bottom: 0;
+    }
+
+    .time,
+    .cert-url {
+      position: static;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    .job-title,
+    .degree,
+    .cert-title,
+    .recommendation-person {
+      flex: 1 1 100%;
+      font-size: 16px;
+    }
+
+    .skillset--grouped .skill-group {
+      display: block;
+    }
+
+    .skillset--grouped .skill-category {
+      margin-bottom: 4px;
+    }
+
+  }
+
+  .doc-actions {
+    top: auto;
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .footer {
+    padding: 22px 24px 74px; // clear the floating Download PDF button
+  }
+
+  .doc-action {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+}
+
+/* Tablets and small laptops — keep one column until the sidebar has room. */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  body {
+    padding: 20px 16px;
   }
 
   .wrapper {
     display: block;
   }
 
+  .sidebar-wrapper {
+    width: 100%;
+  }
+
   .main-wrapper {
-    padding: 30px;
-  }
-
-  .main-wrapper .time {
-    position: static;
-    display: block;
-    margin-top: 5px;
-  }
-
-  .main-wrapper .upper-row {
-    margin-bottom: 0;
-  }
-}
-/* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-}
-
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-  .skillset .level-title {
-    float: left;
-    width: 30%;
-    margin-bottom: 0;
-  }
-
-  .skillset .level-bar {
-    width: 70%;
-    float: left;
-    position: relative;
-    top: 1px;
+    padding: 40px 36px;
   }
 }
 
-.skillset .level-bar-inner {
-  width: auto;
-  -webkit-transition: width 2s ease-in-out;
-  -moz-transition: width 2s ease-in-out;
-  -o-transition: width 2s ease-in-out;
-  transition: width 2s ease-in-out;
-}
-
-/* Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-}
-
-/* Ex-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1400px) {
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
