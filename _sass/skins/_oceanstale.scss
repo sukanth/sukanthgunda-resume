@@ -1,10 +1,18 @@
 /* Ocean Stale variables */
 $theme-color: #2B6781;
-$text-color: #3F4650;
-$text-color-secondary: #545E6C;
-$text-grey: #97AAC3;
-$divider: #e8e8e8;
-$lighter-grey: #ccc;
-$darker-grey: #666;
-$smoky-white: #f5f5f5;
+$text-color: #1F2733;
+$text-color-secondary: #3D4654;
+$text-grey: #5A6B85; // meta text — passes WCAG AA on white (5.4:1)
+$divider: #E4E9F0;
+$rule: #CBD3DF; // visible hairline for section rules
+$smoky-white: #F4F6F9;
 $heart: #fb866a;
+
+/* Derived palette — explicit values, so no deprecated Sass colour
+   functions are needed and the build stays future-proof. */
+$theme-darker: #122A35; // theme -20% lightness
+$theme-dark: #183948; // theme -15% lightness
+$theme-mid-dark: #1E485B; // theme -10% lightness
+$theme-light: #317694; // theme  +5% lightness
+$theme-lighter: #3E95BA; // theme +15% lightness
+$theme-pale: #AED3E4; // theme +45% lightness

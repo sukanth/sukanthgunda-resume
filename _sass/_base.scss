@@ -1,12 +1,27 @@
 /* ======= Base ======= */
+
+$font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  "Helvetica Neue", Arial, sans-serif;
+
+:root {
+  --sidebar-width: 3;
+  --content-width: 7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: $font-sans;
   color: $text-color-secondary;
   background: $smoky-white;
-  font-size: 14px;
-  padding: 30px;
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 40px 24px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1;
 }
 
 h1,
@@ -16,236 +31,573 @@ h4,
 h5,
 h6 {
   font-weight: 700;
+  color: $text-color;
+  letter-spacing: -0.01em;
 }
 
 a {
-  color: darken($theme-color, 15%);
+  color: $theme-mid-dark;
+  text-decoration: none;
+  transition: color 0.15s ease;
   &:hover {
     text-decoration: underline;
-    color: darken($theme-color, 30%);
+    color: $theme-darker;
   }
-  &:focus {
-    text-decoration: none;
+  &:focus-visible {
+    outline: 2px solid $theme-light;
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 }
 
 p {
-  line-height: 1.5;
+  line-height: 1.65;
 }
 
+strong,
+b {
+  font-weight: 600;
+  color: $text-color;
+}
+
+/* Screen-reader-only helper. */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 2000;
+  background: $theme-dark;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 0 0 6px 0;
+  font-weight: 600;
+  &:focus {
+    left: 0;
+    color: #fff;
+  }
+}
+
+/* ======= Floating actions ======= */
+.doc-actions {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
+}
+
+.doc-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: $theme-dark;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(18, 42, 53, 0.24);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+
+  &:hover,
+  &:focus {
+    background: $theme-darker;
+    color: #fff;
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(18, 42, 53, 0.3);
+  }
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* ======= Layout ======= */
 .wrapper {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  background: $theme-color;
-  max-width: 1000px;
+  /* White, not the theme colour: the sidebar no longer stretches to the row
+     height, so whatever shows beneath it must read as page, not as a gap. */
+  background: #fff;
+  max-width: 1060px;
   margin: 0 auto;
   position: relative;
-  @include box-shadow(0px 2px 4px rgba(0, 0, 0, 0.1));
+  border-radius: 4px;
+  /* `clip` rather than `hidden` — it still clips to the radius but does not
+     create a scrollport, which would silently disable `position: sticky`. */
+  overflow: clip;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05),
+    0 8px 28px rgba(16, 24, 40, 0.08);
 }
 
+/* ======= Sidebar ======= */
 .sidebar-wrapper {
   grid-column: span 3;
   order: $sidebar-order;
-  background: $theme-color;
-  color: #fff;
+  /* Without this the grid item stretches to the full row height, leaving a
+     tall empty navy slab under the last block that reads as a broken layout. */
+  align-self: start;
+  background: $theme-dark;
+  color: rgba(255, 255, 255, 0.86);
   a {
     color: #fff;
-  }
-  .profile-container {
-    padding: 30px;
-    //background: darken($theme-color, 10%);
-    background: rgba(0, 0, 0, 0.2);
-    text-align: center;
-    color: #fff;
-  }
-  .name {
-    font-size: 32px;
-    font-weight: 900;
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-  .tagline {
-    color: rgba(256, 256, 256, 0.6);
-    font-size: 16px;
-    font-weight: 400;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  .profile {
-    margin-bottom: 15px;
+    &:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+    &:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.85);
+      outline-offset: 2px;
+    }
   }
 
-  .avatar {
-    //used for profile image
-    max-width: 100px;
-    margin-bottom: 15px;
-    border: 0px solid #fff;
-    border-radius: 100%;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  .profile-container {
+    padding: 40px 30px 32px;
+    background: rgba(0, 0, 0, 0.14);
+    text-align: center;
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
   }
+  .name {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin: 0 0 8px;
+    color: #fff;
+  }
+  .tagline {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .avatar {
+    max-width: 96px;
+    margin-bottom: 18px;
+    border-radius: 100%;
+    border: 2px solid rgba(255, 255, 255, 0.22);
+  }
+
   .contact-list {
+    margin-bottom: 0;
     .fas,
     .fab,
     .far {
-      margin-right: 5px;
-      font-size: 18px;
+      margin-right: 10px;
+      font-size: 15px;
+      width: 18px;
+      text-align: center;
+      color: $theme-pale;
       vertical-align: middle;
+      flex: 0 0 auto;
     }
     li {
-      margin-bottom: 15px;
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 13px;
+      font-size: 14px;
+      word-break: break-word;
       &:last-child {
         margin-bottom: 0;
       }
+      .fas,
+      .fab,
+      .far {
+        margin-top: 3px;
+      }
     }
   }
+
   .container-block {
-    padding: 30px;
+    padding: 28px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    &:last-child {
+      border-bottom: none;
+    }
   }
   .container-block-title {
     text-transform: uppercase;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 700;
-    margin-top: 0;
-    margin-bottom: 15px;
+    letter-spacing: 0.1em;
+    color: $theme-pale;
+    margin: 0 0 16px;
   }
+
   .degree {
     font-size: 14px;
-    margin-top: 0;
-    margin-bottom: 5px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.45;
+    margin: 0 0 4px;
   }
   .education-container {
     .item {
-      margin-bottom: 15px;
+      margin-bottom: 18px;
       &:last-child {
         margin-bottom: 0;
       }
     }
     .meta {
-      color: rgba(256, 256, 256, 0.6);
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 13px;
       font-weight: 500;
-      margin-bottom: 0px;
-      margin-top: 0;
+      margin: 0 0 2px;
     }
     .time {
-      color: rgba(256, 256, 256, 0.6);
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 13px;
       font-weight: 500;
-      margin-bottom: 0px;
+      margin-bottom: 0;
     }
-  }
-  .languages-container {
-    .lang-desc {
-      color: rgba(256, 256, 256, 0.6);
-    }
-  }
-
-  .languages-list {
-    margin-bottom: 0;
-    li {
-      margin-bottom: 10px;
-      &:last-child {
-        margin-bottom: 0;
+    .details {
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 13px;
+      margin-top: 2px;
+      p {
+        margin: 0;
+        line-height: 1.5;
       }
     }
   }
 
-  .interests-list {
-    margin-bottom: 0;
-    li {
-      margin-bottom: 10px;
+  .skills-container {
+    .skillset--grouped .skill-group {
+      display: block;
+      padding: 0;
+      border-bottom: none;
+      margin-bottom: 12px;
+
       &:last-child {
         margin-bottom: 0;
+      }
+    }
+    .skillset--grouped .skill-category {
+      flex: none;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: $theme-pale;
+      margin: 0 0 3px;
+    }
+    .skillset--grouped .skill-items {
+      display: block;
+      font-size: 13px;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.86);
+    }
+    .skillset--grouped .skill-chip {
+      color: inherit;
+    }
+    .skillset--grouped .skill-sep {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  .certifications-container {
+    .item {
+      margin-bottom: 12px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    .cert-title {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: #fff;
+      margin: 0 0 2px;
+      a {
+        color: #fff;
+      }
+    }
+    .cert-org,
+    .time {
+      display: inline;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.76);
+    }
+    .time::before {
+      content: " · ";
+    }
+  }
+
+  .languages-container .lang-desc {
+    color: rgba(255, 255, 255, 0.76);
+  }
+  /* Same treatment as languages: a handful of short items reads better as one
+     wrapped line than as a stack of single-word rows. */
+  .interests-list {
+    margin-bottom: 0;
+    font-size: 13.5px;
+    line-height: 1.6;
+
+    li {
+      display: inline;
+      margin: 0;
+
+      &::after {
+        content: " · ";
+        color: rgba(255, 255, 255, 0.45);
+      }
+      &:last-child::after {
+        content: "";
+      }
+    }
+  }
+
+  /* Four stacked rows for four languages is a lot of column for a little
+     information — run them as one wrapped line. */
+  .languages-list {
+    margin-bottom: 0;
+    font-size: 13.5px;
+    line-height: 1.6;
+
+    li {
+      display: inline;
+      margin: 0;
+
+      &::after {
+        content: " · ";
+        color: rgba(255, 255, 255, 0.45);
+      }
+      &:last-child::after {
+        content: "";
       }
     }
   }
 }
 
+/* ======= Main content ======= */
 .main-wrapper {
   grid-column: span 7;
   order: $resume-order;
   background: #fff;
-  padding: 60px;
+  padding: 56px 56px 48px;
+
   .section-title {
+    display: block;
     text-transform: uppercase;
-    font-size: 20px;
-    font-weight: 500;
-    color: darken($theme-color, 15%);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: $text-color;
     position: relative;
-    margin-top: 0;
-    margin-bottom: 20px;
+    margin: 0 0 22px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $rule;
+
+    /* A short accent rule reads as deliberate structure; a coloured circle
+       icon beside every heading reads as a template. */
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 34px;
+      height: 2px;
+      background: $theme-color;
+    }
   }
+
   .section {
-    margin-bottom: 60px;
+    margin-bottom: 46px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .summary {
+    font-size: 15px;
+    max-width: 64ch;
+    p {
+      margin-bottom: 14px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .certifications-section {
+    .item {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0 10px;
+      margin-bottom: 10px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    .cert-title {
+      flex: 0 0 auto;
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0;
+    }
+    .cert-org {
+      flex: 1 1 auto;
+      margin: 0;
+      font-size: 14px;
+      font-weight: 500;
+      color: $text-color-secondary;
+
+      &::before {
+        content: "— ";
+      }
+    }
+    .time {
+      flex: 0 0 auto;
+      margin-left: auto;
+    }
   }
 
   .experiences-section,
   .recommendations-section,
   .educations-section {
     .item {
-      margin-bottom: 30px;
+      position: relative;
+      margin-bottom: 28px;
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
+
   .upper-row,
   .second-upper-row {
     position: relative;
-    overflow: hidden;
-    margin-bottom: 2px;
     display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 6px 18px;
+    margin-bottom: 2px;
   }
+
   .job-title,
   .degree,
   .cert-title,
   .recommendation-person {
     color: $text-color;
-    font-size: 16px;
-    margin-top: 0;
-    margin-bottom: 0;
-    font-weight: 500;
-    flex: 75%;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0;
+    flex: 1 1 auto;
   }
 
   .time,
   .cert-url {
-    position: absolute;
-    right: 0;
-    top: 0;
+    position: static;
+    flex: 0 0 auto;
     color: $text-grey;
-    flex: 25%;
+    font-size: 13px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
   }
+
   .company,
   .recommendation-role,
   .university,
   .cert-org {
-    margin-bottom: 10px;
-    color: $text-grey;
+    margin: 4px 0 12px;
+    color: $text-color-secondary;
+    font-size: 14px;
+    font-weight: 600;
   }
 
+  .details {
+    font-size: 14.5px;
+    max-width: 64ch;
+    p {
+      margin-bottom: 12px;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0 0 4px;
+    }
+    li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 9px;
+      line-height: 1.6;
+      &::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 9px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #8C98AB;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .intro {
+    margin-bottom: 22px;
+    max-width: 64ch;
+    color: $text-color-secondary;
+  }
+
+
   .project-title {
+    display: block;
     font-size: 16px;
-    font-weight: 400;
-    margin-top: 0;
-    margin-bottom: 5px;
-    color: darken($theme-color, 15%);
-  }
-  .projects-section {
-    .intro {
-      margin-bottom: 30px;
-    }
-    .item {
-      margin-bottom: 15px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    color: $theme-mid-dark;
+    a {
+      color: $theme-mid-dark;
     }
   }
-  .oss-section {
-    .intro {
-      margin-bottom: 30px;
-    }
+  .project-tagline {
+    color: $text-color-secondary;
+    font-size: 14.5px;
+  }
+
+  .projects-section,
+  .oss-section,
+  .publications-section {
     .item {
-      margin-bottom: 15px;
+      margin-bottom: 18px;
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 
   .publication-title {
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 600;
     color: $text-color;
     margin-bottom: 1px;
   }
@@ -254,112 +606,248 @@ p {
     color: $text-grey;
     margin-bottom: 1px;
   }
-  .publications-section {
-    .intro {
-      margin-bottom: 30px;
-    }
-    .item {
-      margin-bottom: 15px;
-    }
-  }
 }
 
-.skillset {
-  .item {
-    margin-bottom: 15px;
-    overflow: hidden;
+/* ======= Skills =======
+   Plain comma-separated text in a label/value grid, not pill badges. Reads as
+   a compact reference block rather than decoration, matches the printed PDF
+   exactly, and keeps the extracted text clean for parsers. */
+.skillset--grouped {
+  .skill-group {
+    display: flex;
+    gap: 20px;
+    padding: 11px 0;
+    border-bottom: 1px solid $divider;
+
+    &:first-child {
+      padding-top: 0;
+    }
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
   }
-  .level-title {
+
+  .skill-category {
+    flex: 0 0 152px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: $text-color;
+    margin: 2px 0 0;
+    line-height: 1.45;
+  }
+
+  .skill-items {
+    flex: 1 1 auto;
+    display: block;
+    margin: 0;
     font-size: 14px;
-    margin-top: 0;
-    margin-bottom: 12px;
-  }
-  .level-bar {
-    height: 12px;
-    background: $smoky-white;
-  }
-  .level-bar-inner {
-    height: 12px;
-    background: lighten($theme-color, 15%);
-  }
-}
-
-.footer {
-  padding-top: 30px;
-  .copyright {
     line-height: 1.6;
     color: $text-color-secondary;
-    font-size: 13px;
   }
 
+  .skill-chip {
+    display: inline;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    font-weight: 500;
+    color: inherit;
+  }
+
+  /* Separators are real, visible text: the list reads as
+     "Java, Python, TypeScript" on screen, in print, and to a parser. */
+  .skill-sep {
+    color: $text-grey;
+  }
+}
+
+/* ======= Footer ======= */
+.footer {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding-top: 26px;
+  text-align: center;
+  .copyright {
+    line-height: 1.6;
+    color: $text-grey;
+    font-size: 13px;
+    margin: 0;
+  }
   .fa-heart {
     color: $heart;
   }
 }
 
-.print-button {
-  position: fixed;
-  top: 20px;
-  right: 120px; // Changed from 20px to make space for the PDF button
-  z-index: 1000;
-  background: $theme-color;
-  color: #fff;
-  padding: 8px 15px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
 
-  &:hover {
-    background: darken($theme-color, 10%);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  &:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .fas {
-    margin-right: 5px;
-  }
+/* ======= Print-only duplicates =======
+   Rendered at the end of the main column on the home page so that printing
+   straight from the page produces resume order. Hidden on screen; _print.scss
+   reveals them and hides the sidebar originals. */
+.print-only-tail {
+  display: none;
 }
 
-.pdf-button {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-  background: $theme-color;
-  color: #fff;
-  padding: 8px 15px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: darken($theme-color, 10%);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+/* ======= /print viewed on screen =======
+   The print page is a real page a user can land on (the "Download PDF" button
+   opens it). Without these rules it would inherit the two-column grid and the
+   dark sidebar, and render as a broken layout if the print dialog is
+   cancelled. */
+@media screen {
+  body.print-layout {
+    background: #fff;
+    padding: 32px 20px 56px;
   }
 
-  &:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* /print is the PDF preview, so it must show exactly what the PDF contains —
+     not the extra depth that only the web page carries. */
+  .print-layout .web-only {
+    display: none;
   }
 
-  &:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
+  .print-layout .wrapper {
+    display: block;
+    max-width: 8.5in;
+    background: #fff;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
   }
 
-  .fas {
-    margin-right: 5px;
+  .print-layout .sidebar-wrapper {
+    display: block;
+    width: 100%;
+    background: #fff;
+    background-image: none;
+    color: $text-color-secondary;
+    border-bottom: 2px solid $text-color;
+    padding-bottom: 14px;
+    margin-bottom: 28px;
+
+    a {
+      color: $theme-mid-dark;
+    }
+
+    .profile-container {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      background: none;
+      padding: 0;
+      text-align: left;
+      border-bottom: none;
+      color: $text-color;
+    }
+
+    .name {
+      flex: 0 0 auto;
+      color: $text-color;
+      font-size: 30px;
+      margin: 0;
+    }
+
+    .tagline {
+      flex: 0 1 auto;
+      text-align: right;
+      color: $text-color-secondary;
+      margin: 0;
+    }
+
+    .avatar {
+      display: none;
+    }
+
+    .contact-container {
+      padding: 0;
+      border-bottom: none;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      margin-top: 10px;
+
+      li {
+        margin-bottom: 0;
+      }
+
+      .fas,
+      .fab,
+      .far {
+        color: $theme-color;
+      }
+    }
+  }
+
+  .print-layout .main-wrapper {
+    display: block;
+    width: 100%;
+    padding: 0;
+  }
+
+  /* Education / languages are emitted in the main column on /print. */
+  .print-layout .container-block {
+    padding: 0;
+    margin-bottom: 26px;
+    border-bottom: none;
+  }
+
+  .print-layout .container-block-title {
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: $theme-mid-dark;
+    margin: 0 0 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid $divider;
+  }
+
+  .print-layout .education-container {
+    .item {
+      margin-bottom: 14px;
+    }
+    .details {
+      color: $text-color-secondary;
+      font-size: 14px;
+      p {
+        margin: 2px 0 0;
+      }
+    }
+    .degree {
+      color: $text-color;
+      font-size: 17px;
+      font-weight: 700;
+      margin: 0 0 2px;
+    }
+    .meta {
+      color: $theme-mid-dark;
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0;
+    }
+    .time {
+      color: $text-grey;
+      font-size: 13px;
+      font-weight: 600;
+    }
+  }
+
+  .print-layout .languages-list {
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+
+    .lang-desc {
+      color: $text-grey;
+    }
   }
 }

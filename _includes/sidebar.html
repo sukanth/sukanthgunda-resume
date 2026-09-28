@@ -12,7 +12,7 @@
     {% endif %}
 
     {% if sidebar.tagline %}
-    <h3 class="tagline">{{ sidebar.tagline }}</h3>
+    <p class="tagline">{{ sidebar.tagline }}</p>
     {% endif %}
 
   </div><!--//profile-container-->
@@ -21,6 +21,14 @@
 
   {% if sidebar.education %}
     {% include education.html %}
+  {% endif %}
+
+  {% if sidebar.certifications %}
+    {% include certifications.html %}
+  {% endif %}
+
+  {% if sidebar.skills %}
+    {% include skills.html %}
   {% endif %}
 
   {% include language.html %}

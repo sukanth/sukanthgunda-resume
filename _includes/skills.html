@@ -1,26 +1,53 @@
-{% assign skills = site.data.data.skills %} {% if skills %}
-<section class="skills-section section">
-  <h2 class="section-title">
-    <span class="fa-stack fa-xs">
-      <i class="fas fa-circle fa-stack-2x"></i>
-      <i class="fas fa-wrench fa-stack-1x fa-inverse"></i>
-    </span>
+{% assign skills = site.data.data.skills %}
+{% if skills and skills.groups %}
+{%- comment -%}
+  Two variants of the same content.
+
+  Sidebar: used on the web page, so the main column is free for the narrative.
+  Section: used in the PDF, because a parser reads one linear text stream and
+  the keyword block has to sit inside it.
+{%- endcomment -%}
+{% if site.data.data.sidebar.skills %}
+<div class="skills-container container-block">
+  <h2 class="container-block-title">
     {{ skills.title }}
   </h2>
 
-  <div class="skillset">
-    {% for skill in skills.toolset %}
-    <div class="item">
-      <h3 class="level-title">{{ skill.name }}</h3>
-      {% assign skill_level = 'width: ' | append: skill.level %}
-      <div class="level-bar">
-        <div class="level-bar-inner" style="{{skill_level}}"></div>
-      </div>
-      <!--//level-bar-->
+  <div class="skillset skillset--grouped">
+    {% for group in skills.groups %}
+    <div class="skill-group">
+      <h3 class="skill-category">{{ group.category }}</h3>
+      <p class="skill-items">
+        {%- assign skill_items = group.items | split: ", " -%}
+        {%- for item in skill_items -%}
+        <span class="skill-chip">{{ item | strip }}</span>{% unless forloop.last %}<span class="skill-sep">, </span>{% endunless %}
+        {%- endfor -%}
+      </p>
     </div>
-    <!--//item-->
+    {% endfor %}
+  </div>
+</div>
+<!--//skills-container-->
+{% else %}
+<section class="skills-section section" id="skills">
+  <h2 class="section-title">
+    {{ skills.title }}
+  </h2>
+
+  <div class="skillset skillset--grouped">
+    {% for group in skills.groups %}
+    <div class="skill-group">
+      <h3 class="skill-category">{{ group.category }}</h3>
+      <p class="skill-items">
+        {%- assign skill_items = group.items | split: ", " -%}
+        {%- for item in skill_items -%}
+        <span class="skill-chip">{{ item | strip }}</span>{% unless forloop.last %}<span class="skill-sep">, </span>{% endunless %}
+        {%- endfor -%}
+      </p>
+    </div>
     {% endfor %}
   </div>
 </section>
 <!--//skills-section-->
+{% endif %}
 {% endif %}
